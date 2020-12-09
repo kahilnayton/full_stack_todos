@@ -5,18 +5,21 @@ const Todo = require('../models/todo')
 
 // Our index route to grab all of the todos
 router.get('/', function (req, res, next) {
+  // Inbuilt mongoose method
   Todo.find({})
     .then(todos => res.send(todos))
     .catch(err => next(err))
 })
 
 router.post('/', function (req, res, next) {
+  // Inbuilt mongoose method
   Todo.create(req.body)
     .then(todo => res.status(201).send(todo))
     .catch(err => next(err))
 })
 
 router.delete('/:id', function (req, res, next) {
+  // Inbuilt mongoose method
   Todo.findByIdAndRemove(req.params.id)
     .then(todo => res.send(todo))
     .catch(err => next(err))
