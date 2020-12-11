@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem'
 import TodoForm from './TodoForm'
+import {authUser} from './auth.js'
 import { connect } from 'react-redux'
 import { getTodos, addTodo, removeTodo } from './actionCreators';
 import { Route } from 'react-router-dom'
@@ -50,4 +51,4 @@ function mapStateToProps(reduxState) {
   }
 }
 
-export default connect(mapStateToProps, { addTodo, removeTodo, getTodos })(TodoList);
+export default connect(mapStateToProps, {authUser, addTodo, removeTodo, getTodos })(TodoList);

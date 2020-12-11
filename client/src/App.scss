@@ -84,7 +84,6 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font-family: "Trade Gothic";
   vertical-align: baseline;
 }
 
@@ -284,26 +283,6 @@ $bigPad: 8rem;
   margin: auto;
   width: 100%;
   background: $grey900;
-
-  &--primary {
-    background: $orange;
-    color: $grey900;
-  
-    &:hover {
-      background: $orange;
-      color: $orange;
-    }
-  }
-  
-  &--secondary {
-    background: $grey900;
-    color: $orange;
-  
-    &:hover {
-      background: $orange;
-      color: $orange;
-    }
-  }
  
   
   @include medium {
@@ -351,33 +330,13 @@ $bigPad: 8rem;
   }
 }
 
-%image-overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  mix-blend-mode: multiply;
-  background: $grey200;
-  z-index: $modal;
-}
-
 %strip-link-style {
   &,
   &:visited,
-  &:hover,
   &:active {
-    font-style: inherit;
     color: inherit;
     background-color: transparent;
-    font-size: inherit;
     text-decoration: none;
-    font-variant: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    font-family: inherit;
   }
 }
 
@@ -469,6 +428,21 @@ $bigPad: 8rem;
   @extend %basic-block;
   height: 100%;
 
+  &__nav {
+    @extend %container;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 6rem;
+    background: linear-gradient($orange, $grey200);
+
+    a {
+      @extend %strip-link-style;
+      font-size: 2.4rem;
+      padding-left: 2rem;
+    }
+  }
+
   &__inner {
     @extend %container;
     display: grid;
@@ -523,5 +497,32 @@ $bigPad: 8rem;
       @extend %text-input;
       margin-bottom: 2rem;
     }
+  }
+}
+
+.auth-form {
+  @extend %basic-block;
+  padding-top: 4rem;
+  
+  &__heading {
+    display: block;
+    text-align: center;
+    font-size: 2.4rem;
+    padding-bottom: 2rem;
+  }
+  
+  form {
+    @extend %container;
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    text-align: center;
+    font-size: 2.4rem;
+  }
+  input {
+    @extend %text-input;
+    margin-bottom: 2rem;
+    max-width: 30rem;
   }
 }
