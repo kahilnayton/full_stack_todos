@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require('../models'); // don't need to specify file because it's named index.js
 const jwt = require('jsonwebtoken')
 
 exports.signin = async function (req, res, next) {
@@ -38,9 +38,12 @@ exports.signin = async function (req, res, next) {
 
 exports.signup = async function (req, res, next) {
   try {
+    // create a user
     let user = await db.User.create(req.body)
     let { id, username, profileImageUrl } = user;
+    // we use our dotenv to save a secret string on our server for the jwt sign
     let token = jwt.sign(
+      // es6 key and values are the same
       {
         id,
         username,

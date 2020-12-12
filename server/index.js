@@ -1,24 +1,25 @@
-require("dotenv").config();
+require("dotenv").config(); // loads all our env variables
 const express = require("express")
 const app = express()
 const cors = require("cors")
-const morgan = require('morgan')
+// const morgan = require('morgan')
 const bodyParser = require('body-parser')
-const todoRoutes = require('./routes/todos')
+const todosRoutes = require('./routes/todos')
 const authRoutes = require('./routes/auth')
 const db = require('./models')
-const PORT = 3001
+const PORT = 8081
+const {loginRequired, ensureCorrectUser} = require('./middleware/auth')
+const errorHandler = require('./handlers/error')
 
-const errorHandler = require('./handlers/error.')
 
-
-app.use(morgan("tiny"))
-app.use(bodyParser.json())
 app.use(cors())
+app.use(bodyParser.json())
 
-app.use('/api/auth', authRouter)
+// all my routes
+
+app.use('/api/auth', authRoutes)
 app.use(
-  '/api/users/:id/message',
+  '/api/users/:id/todos',
   loginRequired,
   ensureCorrectUser,
   todosRoutes

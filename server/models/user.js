@@ -22,16 +22,18 @@ const userSchema = new mongoose.Schema({
   todo: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Message"
+      ref: "Todo"
     }
   ]
 });
 
-useSchema.pre("save", async function (next) {
+// User hook that runs a function right before we save the document
+userSchema.pre("save", async function (next) {
   try {
     if (!this.isModified("password")) {
       return next()
     }
+    // salting the password for encryption
     let hashedPassword = await bcrypt.hash(this.password, 10)
     this.password = hashedPassword;
     return next()
@@ -40,7 +42,7 @@ useSchema.pre("save", async function (next) {
   }
 })
 
-userSchema.methods.comparePassword = async function (candidatePassword, next) {
+userSchema.method.comparePassword = async function (candidatePassword, next) {
   try {
     let isMatch = await bcrypt.compare(candidatePassword, this.password)
     return isMatch
