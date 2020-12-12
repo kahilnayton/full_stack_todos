@@ -32,7 +32,6 @@ class AuthForm extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { email, username, password, profileImageUrl } = this.state;
     // history is coming from react router
     const {

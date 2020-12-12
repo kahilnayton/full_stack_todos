@@ -1,13 +1,13 @@
-import { ADD_TODO, REMOVE_TODO, GET_TODOS } from '../actionCreators'
+import { ADD_TODO, REMOVE_TODO, LOAD_TODOS } from '../actionCreators'
 
 const initialState = {
   todos: []
 }
 
-export default(state = initialState, action) => {
+const todo = (state = initialState, action) => {
   switch (action.type) {
-    case GET_TODOS:
-      return { ...state, todos: action.data };
+    case LOAD_TODOS:
+      return { ...action.todos };
     case ADD_TODO:
       return {...state, todos: [...state.todos, action.todo]}
     case REMOVE_TODO:
@@ -19,3 +19,5 @@ export default(state = initialState, action) => {
       
   }
 }
+
+export default todo;

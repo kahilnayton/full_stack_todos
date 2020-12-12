@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 // To let the server know who we are and that we're logged in
 export function setTokenHeader(token) {
   if (token) {

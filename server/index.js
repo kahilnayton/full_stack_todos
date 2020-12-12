@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const todosRoutes = require('./routes/todos')
 const authRoutes = require('./routes/auth')
 const db = require('./models')
-const PORT = 8081
+const PORT = 3001
 const {loginRequired, ensureCorrectUser} = require('./middleware/auth')
 const errorHandler = require('./handlers/error')
 

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import {addTodo} from '../actions/todos'
 
 class TodoForm extends Component {
   constructor(props) {
@@ -30,10 +32,16 @@ class TodoForm extends Component {
           id="task"
           onChange={this.handleChange}
         /> 
-        <button className="button">Add</button>
+        <button type="submit" className="button">Add</button>
       </form>
     );
   }
 }
 
-export default TodoForm;
+function mapStateToProps(state) {
+  return {
+    errors: state.errors
+  }
+}
+
+export default connect(mapStateToProps, {addTodo})(TodoForm);

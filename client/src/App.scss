@@ -525,4 +525,10 @@ $bigPad: 8rem;
     margin-bottom: 2rem;
     max-width: 30rem;
   }
+  &__error {
+    display: block;
+    text-align: center;
+    padding-bottom: 2rem;
+    color: red;
+  }
 }
