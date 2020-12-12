@@ -24,16 +24,37 @@ class AuthForm extends Component {
     // This is useful to tell us the type of request we're going to make
     const authType = this.props.signUp ? "signup" : "signin";
     this.props.onAuth(authType, this.state).then(() => {
-      console.log("logged in");
-    });
+      // using the router to redirect on success
+      this.props.history.push('/')
+    }).catch(() => {
+      return;
+    })
   };
 
   render() {
+    console.log(this.props);
     const { email, username, password, profileImageUrl } = this.state;
-    const { heading, buttonText, signUp } = this.props;
+    // history is coming from react router
+    const {
+      heading,
+      buttonText,
+      signUp,
+      errors,
+      history,
+      removeError,
+    } = this.props;
+
+    // Listens for any change in the route and then calls the remove error function
+    history.listen(() => {
+      removeError()
+    })
+
     return (
       <div className="auth-form">
         <h2 className="auth-form__heading">{heading}</h2>
+        {/* {errors.message && (
+          <div className="auth-form__error">{errors.message}</div>
+        )} */}
         <form action="" onSubmit={this.handleSubmit}>
           <label htmlFor="email"></label>
           <input

@@ -1,10 +1,10 @@
-import { ADD_TODO, REMOVE_TODO, GET_TODOS } from './actionCreators'
+import { ADD_TODO, REMOVE_TODO, GET_TODOS } from '../actionCreators'
 
 const initialState = {
   todos: []
 }
 
-export default function rootReducer(state = initialState, action) {
+export default(state = initialState, action) => {
   switch (action.type) {
     case GET_TODOS:
       return { ...state, todos: action.data };
