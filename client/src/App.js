@@ -23,19 +23,13 @@ class App extends Component {
   handleSubmit(val) {
     this.props.addTodo(val);
   }
-  removeTodo(id) {
+  removeTodo = (id) => {
     this.props.removeTodo(id);
   }
 
   render() {
-    const { authUser, errors, removeError, currentUser } = this.props;
-    let todos = this.props.todos.map((val) => (
-      <TodoItem
-        removeTodo={this.removeTodo.bind(this, val._id)}
-        task={val.task}
-        key={val._id}
-      />
-    ));
+    const { authUser, errors, removeError, currentUser, todos } = this.props;
+
     return (
       <div className="app">
         <div className="app__nav">
@@ -47,9 +41,13 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path="/"
+              path="/todos"
               render={(props) => (
-                <Homepage currentUser={currentUser} {...props} />
+                <Homepage
+                  currentUser={currentUser}
+                  todos={todos}
+                  removeTodo={this.removeTodo}
+                  {...props} />
               )}
             />
             <Route

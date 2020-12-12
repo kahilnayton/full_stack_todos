@@ -8,8 +8,7 @@ export default class Homepage extends Component {
     super(props)
   }
   render() {
-    debugger;
-    const { currentUser, todos } = this.props
+    const { currentUser, todos, removeTodo } = this.props
     if (!currentUser.isAuthenticated) {
       return (
         <div>
@@ -17,9 +16,10 @@ export default class Homepage extends Component {
         </div>
       );
     }
+    debugger;
     todos.map((val) => (
       <TodoItem
-        removeTodo={this.removeTodo.bind(this, val._id)}
+        removeTodo={this.removeTodo(val._id)}
         task={val.task}
         key={val._id}
       />

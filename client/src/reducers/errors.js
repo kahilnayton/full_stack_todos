@@ -1,5 +1,6 @@
 import { ADD_ERROR, REMOVE_ERROR } from '../actionCreators'
 
+// Great way of having a generic error handler for all different types of errors
 export default (state = { message: null }, action) => {
   switch (action.type) {
     case ADD_ERROR:

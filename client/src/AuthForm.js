@@ -52,9 +52,9 @@ class AuthForm extends Component {
     return (
       <div className="auth-form">
         <h2 className="auth-form__heading">{heading}</h2>
-        {/* {errors.message && (
+        {errors.message && (
           <div className="auth-form__error">{errors.message}</div>
-        )} */}
+        )}
         <form action="" onSubmit={this.handleSubmit}>
           <label htmlFor="email"></label>
           <input
