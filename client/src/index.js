@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "./containers/App";
 import jwtDecode from 'jwt-decode'
 // applyMiddleware helps us to use thunk
 import { createStore, applyMiddleware, compose } from "redux";
@@ -29,7 +29,7 @@ if (localStorage.jwtToken) {
   // Failsafe incase someone tries to tamper with the token in local storage
   try {
     // taking just the pay load of the token with jwtDecode
-    store.dispatch(setCurrentUser(jwtDecode(localStorage)))
+    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)))
   } catch (e) {
     store.dispatch(setCurrentUser({}))
   }
