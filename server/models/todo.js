@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/server')
 mongoose.set('debug', true)
 // use the built in Ee6 promises
 mongoose.Promise = Promise;
