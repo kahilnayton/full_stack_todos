@@ -1,6 +1,6 @@
 import { apiCall } from '../services/api';
 import { addError } from "./errors";
-import { LOAD_TODOS, REMOVE_TODOS } from "../actionTypes";
+import { LOAD_TODOS, REMOVE_TODO } from "../actionTypes";
 
 export const loadTodos = (todos) => ({
   type: LOAD_TODOS,
@@ -22,6 +22,6 @@ export const addTodo = (task) => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.id;
   return apiCall("post", `/api/users/${id}/todos`, { task })
-    .then((res) => res.json())
+    .then((res) => {})
     .catch((err) => dispatch(addError(err.message)));
 };

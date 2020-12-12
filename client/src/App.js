@@ -5,16 +5,22 @@ import "./App.scss";
 import AuthForm from "./AuthForm";
 import TodoItem from "./components/TodoItem";
 import Homepage from "./components/Homepage";
+import Navbar from './components/Navbar'
 import TodoForm from "./containers/TodoForm";
 import { getTodos, addTodo, removeTodo } from "./actionCreators";
 import { removeError } from "./actions/errors";
-import { authUser } from "./actions/auth";
+import { authUser, logout } from "./actions/auth";
 import withAuth from './hocs/withAuth'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  logout = e => {
+    e.preventDefault();
+    this.props.logout();
   }
 
 
@@ -30,12 +36,8 @@ class App extends Component {
 
     return (
       <div className="app">
-        <div className="app__nav">
-          <Link to="/">Home</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/signin">Log In</Link>
-        </div>
         <div>
+          <Navbar currentUser={currentUser} />
           <Switch>
             <Route
               exact
@@ -107,6 +109,6 @@ export default withRouter(
     addTodo,
     removeTodo,
     getTodos,
-    removeError,
+    removeError
   })(App)
 );
