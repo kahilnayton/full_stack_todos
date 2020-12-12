@@ -33,7 +33,7 @@ useSchema.pre("save", async function (next) {
       return next()
     }
     let hashedPassword = await bcrypt.hash(this.password, 10)
-    this.password = hashPassword;
+    this.password = hashedPassword;
     return next()
   } catch (err) {
     return next (err)
