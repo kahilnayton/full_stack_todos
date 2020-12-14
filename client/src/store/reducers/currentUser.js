@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER } from '../actionCreators'
+import { SET_CURRENT_USER } from '../actionTypes'
 
 const initialState = {
   isAuthenticated: false,

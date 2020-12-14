@@ -2,26 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./containers/App";
-import jwtDecode from 'jwt-decode'
-// applyMiddleware helps us to use thunk
-import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./reducers/index";
 import { Provider } from "react-redux";
+import {configureStore} from './store'
+import jwtDecode from 'jwt-decode'
 import { BrowserRouter } from "react-router-dom";
 // Thunk allows us to create action creators that return a function instead of an action
 // In this case it delays dispatch so that we can wait until some asynchronous action has completed
-import thunk from "redux-thunk";
 import reportWebVitals from "./reportWebVitals";
-import { setAuthorizationToken, setCurrentUser } from "./actions/auth";
+import { setAuthorizationToken, setCurrentUser } from "./store/actions/auth";
 
-// pass the middleware as a parameter to createStore
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : (f) => f
-  )
-);
+const store = configureStore();
 
 // This is building hydration - so that in the event that anything crashes we will be able to re hydrate out state with all the user data
 if (localStorage.jwtToken) {

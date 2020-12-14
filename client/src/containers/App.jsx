@@ -9,8 +9,8 @@ import Homepage from "../components/Homepage";
 import Navbar from "./Navbar";
 import TodoForm from "./TodoForm";
 import { getTodos, addTodo, removeTodo } from "../actionCreators";
-import { removeError } from "../actions/errors";
-import { authUser } from "../actions/auth";
+import { removeError } from "../store/actions/errors";
+import { authUser } from "../store/actions/auth";
 import withAuth from "../hocs/withAuth";
 
 class App extends Component {

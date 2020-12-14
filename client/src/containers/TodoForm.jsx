@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {addTodo} from '../actions/todos'
+import {addTodo} from '../store/actions/todos'
 
 class TodoForm extends Component {
   constructor(props) {
@@ -17,13 +17,13 @@ class TodoForm extends Component {
     })
   }
   handleSubmit(e) {
-    
+    // debugger;
     e.preventDefault()
     this.props.addTodo(this.state.task)
     this.setState({todo: ''})
-    e.target.reset()
-    this.props.history.push('/todos')
+    this.props.history.push('/')
   }
+
   render() {
     return (
       <form className="app__todo-form" onSubmit={this.handleSubmit}>
@@ -40,9 +40,9 @@ class TodoForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(reduxState) {
   return {
-    errors: state.errors
+    errors: reduxState.errors
   }
 }
 
