@@ -17,11 +17,12 @@ class TodoForm extends Component {
     })
   }
   handleSubmit(e) {
+    
     e.preventDefault()
     this.props.addTodo(this.state.task)
     this.setState({todo: ''})
     e.target.reset()
-    this.props.history.push('/')
+    this.props.history.push('/todos')
   }
   render() {
     return (

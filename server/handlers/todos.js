@@ -4,7 +4,7 @@ const db = require('../models')
 exports.createTodo = async function (req, res, next) {
   try {
     let todo = await db.Todo.create({
-      text: req.body.text,
+      task: req.body.task,
       user: req.params.id
     })
     let foundUser = await db.User.findById(req.params.id)
@@ -33,7 +33,7 @@ exports.getTodo = async function (req, res, next) {
 // DELETE  /api/users/:id/todos/:todo_id
 exports.deleteTodo = async function (req, res, next) {
   try {
-    let foundTodo = await db.Todo.findById(req.params.message_id)
+    let foundTodo = await db.Todo.findById(req.params.todo_id)
     await foundTodo.remove()
 
     return res.status(200).json(foundTodo)

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
+import TodoList from '../containers/TodoList'
 
 const Homepage = ({ currentUser }) => {
   if (!currentUser.isAuthenticated) {
@@ -25,6 +26,7 @@ const Homepage = ({ currentUser }) => {
         <div className="app__heading">
           <h1 className="heading">Welcome {currentUser.user.username}</h1>
         </div>
+        <TodoList />
         <Route path="/todos" />
         <div className="app__button-container">
           <Link className="button" to="/todos">

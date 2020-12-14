@@ -1,6 +1,6 @@
 import { apiCall } from '../services/api';
 import { addError } from "./errors";
-import { LOAD_TODOS, REMOVE_TODO } from "../actionTypes";
+import { LOAD_TODOS, REMOVE_TODO, ADD_TODO } from "../actionTypes";
 
 export const loadTodos = (todos) => ({
   type: LOAD_TODOS,
@@ -19,9 +19,10 @@ export const fetchTodos = () => {
 
 // Wait until our ajax call has finished then go to the reducer with the todo that our call got back from the server then map state to props
 export const addTodo = (task) => (dispatch, getState) => {
+  // debugger;
   let { currentUser } = getState();
   const id = currentUser.user.id;
   return apiCall("post", `/api/users/${id}/todos`, { task })
     .then((res) => {})
-    .catch((err) => dispatch(addError(err.message)));
+    .catch((err) => addError(err.message));
 };

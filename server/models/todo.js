@@ -7,7 +7,7 @@ const todoSchema = new mongoose.Schema(
     task: {
       type: String,
       required: true,
-      maxLength: 160,
+      maxLength: 160
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,

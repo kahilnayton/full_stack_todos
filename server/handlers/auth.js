@@ -32,7 +32,7 @@ exports.signin = async function (req, res, next) {
       })
     }
   } catch (e) {
-    return next({status: 400, message: "Invalid email or username"})
+    return next({status: 400, message: "Error in catch of server / handlers - Invalid email or username"})
   }
 }
 
