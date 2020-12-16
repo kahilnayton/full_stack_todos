@@ -10,6 +10,9 @@ import { BrowserRouter } from "react-router-dom";
 // In this case it delays dispatch so that we can wait until some asynchronous action has completed
 import reportWebVitals from "./reportWebVitals";
 import { setAuthorizationToken, setCurrentUser } from "./store/actions/auth";
+import { createBrowserHistory } from "history";
+
+export const history = createBrowserHistory()
 
 const store = configureStore();
 
@@ -27,7 +30,7 @@ if (localStorage.jwtToken) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <App />
     </BrowserRouter>
   </Provider>,

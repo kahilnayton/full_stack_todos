@@ -1,26 +1,29 @@
-import { apiCall } from '../../services/api';
+import { apiCall } from "../../services/api";
 import { addError } from "./errors";
 import { LOAD_TODOS, REMOVE_TODO } from "../actionTypes";
+import { history } from '../../index';
+
 
 export const loadTodos = (todos) => ({
   type: LOAD_TODOS,
   todos,
 });
 
-export const remove = id => ({
+export const remove = (id) => ({
   type: REMOVE_TODO,
-  id
-})
+  id,
+});
 
 export const removeTodo = (user_id, todo_id) => {
-  return dispatch => {
+  return (dispatch) => {
     return apiCall("delete", `/api/users/${user_id}/todos/${todo_id}`)
       .then(() => dispatch(remove(todo_id)))
-      .catch(err => {
-      addError(err.message)
-    })
-  }
-}
+      .then(history.push('/'))
+      .catch((err) => {
+        addError(err.message);
+      });
+  };
+};
 
 // The functions that we're actually going to use will use redux thunk
 // Action creators usually return objects, but we're returning a function that returns an asynchronous action

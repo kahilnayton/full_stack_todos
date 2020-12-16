@@ -27,10 +27,11 @@ class TodoForm extends Component {
   render() {
     return (
       <form className="app__todo-form" onSubmit={this.handleSubmit}>
-        <label htmlFor="task">Task</label>
+        <label htmlFor="task"></label>
         <input
           type="text"
           name="task"
+          placeholder="TASK"
           id="task"
           onChange={this.handleChange}
         /> 

@@ -16,18 +16,10 @@ import withAuth from "../hocs/withAuth";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleSubmit(val) {
-    this.props.addTodo(val);
-  }
-  removeTodo = (id) => {
-    this.props.removeTodo(id);
-  };
 
   render() {
-    const { authUser, errors, removeError, currentUser, todos } = this.props;
+    const { authUser, errors, removeError, currentUser } = this.props;
 
     return (
       <div className="app">
@@ -73,9 +65,9 @@ class App extends Component {
               );
             }}
           />
+          <Route path="/users/:id/todos/new" component={withAuth(TodoForm)} />
         </Switch>
-        <Route path="/users/:id/todos/new" component={withAuth(TodoForm)} />
-        <Route exact path="/todos" component={() => <div>{todos}</div>} />
+
         <footer className="app__footer">
           <a
             target="_blank"
@@ -102,9 +94,6 @@ function mapStateToProps(reduxState) {
 export default withRouter(
   connect(mapStateToProps, {
     authUser,
-    addTodo,
-    removeTodo,
-    getTodos,
     removeError,
   })(App)
 );

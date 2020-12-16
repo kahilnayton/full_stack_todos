@@ -7,7 +7,7 @@ exports.createTodo = async function (req, res, next) {
       user: req.params.id,
     });
     let foundUser = await db.User.findById(req.params.id);
-    foundUser.todo.push(todo.id);
+    foundUser.todos.push(todo.id);
     await foundUser.save();
     let foundTodo = await db.Todo.findById(todo._id).populate("user", {
       username: true,
@@ -27,6 +27,7 @@ exports.getTodo = async function (req, res, next) {
     return next(err);
   }
 };
+
 
 // DELETE  /api/users/:id/todos/:todo_id
 exports.deleteTodo = async function (req, res, next) {

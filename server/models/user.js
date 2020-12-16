@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   profileImageUrl: {
     type: String
   },
-  todo: [
+  todos: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Todo"
