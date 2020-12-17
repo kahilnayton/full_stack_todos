@@ -1,6 +1,6 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
-import { LOAD_TODOS, REMOVE_TODO } from "../actionTypes";
+import { LOAD_TODOS, REMOVE_TODO, UPDATE_TODO } from "../actionTypes";
 import { history } from '../../index';
 
 
@@ -14,11 +14,26 @@ export const remove = (id) => ({
   id,
 });
 
+export const update = (id) => ({
+  type: UPDATE_TODO,
+  id,
+});
+
 export const removeTodo = (user_id, todo_id) => {
   return (dispatch) => {
     return apiCall("delete", `/api/users/${user_id}/todos/${todo_id}`)
       .then(() => dispatch(remove(todo_id)))
       .then(history.push('/'))
+      .catch((err) => {
+        addError(err.message);
+      });
+  };
+};
+
+export const updateTodo = (user_id, todo_id) => {
+  return (dispatch) => {
+    return apiCall("put", `/api/users/${user_id}/todos/${todo_id}`)
+      .then(() => dispatch(update(todo_id)))
       .catch((err) => {
         addError(err.message);
       });

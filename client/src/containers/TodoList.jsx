@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchTodos, removeTodo } from "../store/actions/todos";
+import { fetchTodos, removeTodo, updateTodo } from "../store/actions/todos";
 import TodoItem from "../components/TodoItem";
 
 class TodoList extends Component {
@@ -8,17 +8,11 @@ class TodoList extends Component {
     // there is no need to make this asynchronous because that will ne handled by redux thunk
     this.props.fetchTodos();
   }
-
   
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.todos !== this.props.todos) {
-      console.log('update')
-    }
-  }
 
   // Object.entries iterates over all the keys in the todos object
-  _renderObject(todos, removeTodo, currentUser) {
-    return Object.entries(todos).map(([key, t], i) => {
+  renderTodos(todos, removeTodo, currentUser, updateTodo) {
+    return todos.map(t => {
       // Ensure you bind the right todo id and user id to delete
 
       if (t.user && t.user._id === currentUser) {
@@ -26,8 +20,9 @@ class TodoList extends Component {
         return (
           <TodoItem
             removeTodo={removeTodo.bind(this, t.user._id, t._id)}
+            updateTodo={updateTodo.bind(this, t.user._id, t._id)}
             date={t.createdAt}
-            key={key}
+            key={t._id}
             task={t.task}
           />
         );
@@ -36,9 +31,9 @@ class TodoList extends Component {
   }
 
   render() {
-    const { todos, removeTodo, currentUser } = this.props;
+    const { todos, removeTodo, currentUser, updateTodo } = this.props;
     return (
-      <div>{todos && this._renderObject(todos, removeTodo, currentUser)}</div>
+      <div>{todos && this.renderTodos(todos, removeTodo, currentUser, updateTodo)}</div>
     );
   }
 }
@@ -50,4 +45,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { fetchTodos, removeTodo })(TodoList);
+export default connect(mapStateToProps, { fetchTodos, removeTodo, updateTodo })(TodoList);

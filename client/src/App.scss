@@ -149,16 +149,21 @@ a {
   text-decoration: none;
 }
 
-
 // BREAKPOINTS
 @mixin mobile {
-  @media (max-width: 599px) { @content; }
+  @media (max-width: 599px) {
+    @content;
+  }
 }
 @mixin medium {
-  @media (min-width: 900px) { @content; }
+  @media (min-width: 900px) {
+    @content;
+  }
 }
 @mixin large {
-  @media (min-width: 1200px) { @content; }
+  @media (min-width: 1200px) {
+    @content;
+  }
 }
 
 // STRUCTURE
@@ -181,7 +186,6 @@ body {
   }
 }
 
-
 html {
   height: 100%;
   width: 100%;
@@ -201,9 +205,9 @@ body {
 .overflow {
   overflow: hidden;
   transition: 0.2s;
-  
+
   &:after {
-    content: '';
+    content: "";
     height: 100%;
     width: 100%;
     position: absolute;
@@ -211,16 +215,16 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(128, 128, 128, 0.345); 
+    background: rgba(128, 128, 128, 0.345);
     transition: 0.2s;
   }
 }
-
 
 // Colors
 $red: rgb(116, 0, 0);
 $orange: rgb(231, 201, 144);
 $yellow: rgb(255, 255, 156);
+$green: rgb(14, 116, 0);
 $colorAccent: #d93740;
 $cream: #f7f6f3;
 $white: #fff;
@@ -231,7 +235,6 @@ $grey400: rgb(214, 211, 211);
 $grey600: rgb(184, 183, 183);
 $grey800: rgb(141, 139, 139);
 $grey900: rgb(105, 105, 105);
-
 
 // weights
 $regular: 400;
@@ -264,7 +267,7 @@ $smallPad: 4rem;
 $medPad: 6rem;
 $bigPad: 8rem;
 
-// BUTTON 
+// BUTTON
 .button {
   display: inline-block;
   color: $orange;
@@ -283,8 +286,7 @@ $bigPad: 8rem;
   margin: auto;
   width: 100%;
   background: $grey900;
- 
-  
+
   @include medium {
     min-width: 30rem;
   }
@@ -294,11 +296,10 @@ $bigPad: 8rem;
     color: $grey900;
     transform: scale(1.02);
   }
-  
+
   &--wide {
     width: 30rem;
   }
-  
 
   &:disabled {
     background-color: $grey200;
@@ -376,6 +377,33 @@ $bigPad: 8rem;
     height: 0.2rem;
     background-color: $grey900;
     transform: rotate(-45deg);
+  }
+}
+%basic-tick {
+  display: block;
+  position: absolute;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 0.2rem;
+  transition: transform 0.4s ease;
+  transform-origin: center center;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 0.2rem;
+    background-color: $green;
+  }
+  &::after {
+    transform: rotate(45deg)translateY(6px);
+    width: 45%;
+  }
+  
+  &::before {
+    transform: rotate(-45deg);
+    width: 100%;
   }
 }
 
@@ -469,14 +497,15 @@ $bigPad: 8rem;
     }
   }
   &__todo-item {
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__todo-task {
     font-size: 1.6rem;
-    text-indent: 1rem;
-    padding-bottom: 2rem;
+    text-transform: uppercase;
   }
   &__todo-date {
-    left: 1rem;
-    position: absolute;
-    bottom: 0;
     color: $orange;
   }
 
@@ -488,13 +517,21 @@ $bigPad: 8rem;
   }
   &__delete-cross {
     @extend %basic-cross;
-
+  }
+  &__done-button {
+    @extend %strip-input-style;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__done-tick {
+    @extend %basic-tick;
   }
   &__todo-container {
     position: relative;
     border-bottom: solid 1.5px $grey400;
     display: grid;
-    grid-template-columns: 1fr 5rem;
+    grid-template-columns: 5rem 1fr 5rem;
     padding-top: 2rem;
     max-width: 40rem;
     margin: auto;
@@ -526,7 +563,7 @@ $bigPad: 8rem;
       svg {
         height: 4rem;
         width: 4rem;
-        fill:rgb(12, 12, 12);
+        fill: rgb(12, 12, 12);
         padding: 0 1rem;
 
         &:hover {
@@ -552,14 +589,14 @@ $bigPad: 8rem;
 .auth-form {
   @extend %basic-block;
   padding-top: 4rem;
-  
+
   &__heading {
     display: block;
     text-align: center;
     font-size: 2.4rem;
     padding-bottom: 2rem;
   }
-  
+
   form {
     @extend %container;
     display: flex;

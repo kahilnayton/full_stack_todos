@@ -28,6 +28,17 @@ exports.getTodo = async function (req, res, next) {
   }
 };
 
+// UPDATE /api/user/:id/todo
+exports.updateTodo = async function (req, res, next) {
+  try {
+    let foundTodo = await db.Todo.findById(req.params.todo_id);
+    await foundTodo.update(foundTodo.done = true);
+    return res.status(200).json(foundTodo);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 
 // DELETE  /api/users/:id/todos/:todo_id
 exports.deleteTodo = async function (req, res, next) {

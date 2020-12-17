@@ -5,6 +5,7 @@ const router = express.Router({ mergeParams: true });
 const {
   createTodo,
   getTodo,
+  updateTodo,
   deleteTodo
 } = require("../handlers/todos");
 
@@ -14,7 +15,8 @@ router.route("/").post(createTodo);
 
 router
   .route("/:todo_id")
-  .get(getTodo).
-  delete(deleteTodo);
+  .get(getTodo)
+  .put(updateTodo)
+  .delete(deleteTodo);
 
 module.exports = router;

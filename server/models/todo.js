@@ -9,6 +9,10 @@ const todoSchema = new mongoose.Schema(
       required: true,
       maxLength: 160
     },
+    done: {
+      type: Boolean,
+      default: false
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

@@ -1,15 +1,26 @@
-import React from 'react'
-import Moment from 'react-moment'
+import React from "react";
+import Moment from "react-moment";
 
-const TodoItem = ({ date, userId, todoId, username, isCorrectUser, task, removeTodo }) => {
-  
+const TodoItem = ({
+  date,
+  userId,
+  todoId,
+  username,
+  isCorrectUser,
+  updateTodo,
+  task,
+  removeTodo,
+}) => {
   return (
     <div className="app__todo-container">
+      <button className="app__done-button" onClick={updateTodo}>
+        <span className="app__done-tick"></span>
+      </button>
       <span className="app__todo-item">
+        <h1 className="app__todo-task">
         {task}
-      </span>
-      <span className="app__todo-date">
-        <Moment className="date" format="Do MMM YYYY">
+      </h1>
+        <Moment className="app__todo-date" format="Do MMM YYYY">
           {date}
         </Moment>
       </span>
@@ -17,7 +28,7 @@ const TodoItem = ({ date, userId, todoId, username, isCorrectUser, task, removeT
         <span className="app__delete-cross"></span>
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default TodoItem
+export default TodoItem;
