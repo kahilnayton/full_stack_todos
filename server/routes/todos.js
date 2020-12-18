@@ -12,11 +12,13 @@ const {
 // prefix rout with todo
 router.route("/").post(createTodo);
 
+// update
+router.route("/:todo_id/update").put(updateTodo);
+
 
 router
   .route("/:todo_id")
   .get(getTodo)
-  .put(updateTodo)
   .delete(deleteTodo);
 
 module.exports = router;

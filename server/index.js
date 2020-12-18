@@ -25,6 +25,13 @@ app.use(
   todosRoutes
 );
 
+// Update
+app.use(
+  '/api/users/:user_id/todos/:todo_id/update',
+  loginRequired,
+  todosRoutes
+);
+
 
 // any routes that comes in we're going to pre fix them with this route
 app.use('/api/todos', loginRequired, async function (req, res, next) {

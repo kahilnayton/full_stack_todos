@@ -31,8 +31,9 @@ export const removeTodo = (user_id, todo_id) => {
 };
 
 export const updateTodo = (user_id, todo_id) => {
+  // debugger;
   return (dispatch) => {
-    return apiCall("put", `/api/users/${user_id}/todos/${todo_id}`)
+    return apiCall("put", `/api/users/${user_id}/todos/${todo_id}/update`)
       .then(() => dispatch(update(todo_id)))
       .catch((err) => {
         addError(err.message);

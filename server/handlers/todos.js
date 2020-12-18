@@ -28,7 +28,7 @@ exports.getTodo = async function (req, res, next) {
   }
 };
 
-// UPDATE /api/user/:id/todo
+// UPDATE /api/user/:id/todo/:todo_id
 exports.updateTodo = async function (req, res, next) {
   try {
     let foundTodo = await db.Todo.findById(req.params.todo_id);
