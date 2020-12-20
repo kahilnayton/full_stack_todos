@@ -9,7 +9,15 @@ const todo = (state = [], action) => {
       // ._id is a what mongo names it's ids 
       return state.filter(todo => todo._id !== action.id);
     case UPDATE_TODO:
-      return [...action.todos];
+      let prevState = state.filter(todo => todo._id !== action.id);
+      let completedTodo = state.filter(todo => todo._id == action.id);
+      return state.map(t => {
+        if (t._id == action.id) {
+          t.done = true;
+        };
+        return t;
+      })
+
     default:
       return state;
   }

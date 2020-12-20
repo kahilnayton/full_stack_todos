@@ -28,12 +28,19 @@ exports.getTodo = async function (req, res, next) {
   }
 };
 
-// UPDATE /api/user/:id/todo/:todo_id
+// UPDATE /api/user/:id/todo/:todo_id/update
 exports.updateTodo = async function (req, res, next) {
   try {
-    let foundTodo = await db.Todo.findById(req.params.todo_id);
-    await foundTodo.update(foundTodo.done = true);
-    return res.status(200).json(foundTodo);
+    let updatedTodo = await db.Todo.findById(req.params.todo_id);
+    await db.Todo.update(
+      { _id: updatedTodo },
+      {
+        $set: {
+          done: true,
+        }
+      }
+   );
+    return res.status(200).json(updatedTodo);
   } catch (err) {
     return next(err);
   }

@@ -397,10 +397,10 @@ $bigPad: 8rem;
     background-color: $green;
   }
   &::after {
-    transform: rotate(45deg)translateY(6px);
+    transform: rotate(45deg) translateY(6px);
     width: 45%;
   }
-  
+
   &::before {
     transform: rotate(-45deg);
     width: 100%;
@@ -504,6 +504,11 @@ $bigPad: 8rem;
   &__todo-task {
     font-size: 1.6rem;
     text-transform: uppercase;
+
+    &--done {
+      text-decoration: line-through;
+     
+    }
   }
   &__todo-date {
     color: $orange;
@@ -526,6 +531,20 @@ $bigPad: 8rem;
   }
   &__done-tick {
     @extend %basic-tick;
+    
+    &--done {
+      &::after,
+      &::before {
+        transition: 0.2s;
+        background-color: $red;
+      }
+      &::before {
+        transform: rotate(0);
+      }
+      &::after {
+        display: none;
+      }
+    }
   }
   &__todo-container {
     position: relative;
@@ -615,6 +634,6 @@ $bigPad: 8rem;
     display: block;
     text-align: center;
     padding-bottom: 2rem;
-    color: red;
+    color: $red;
   }
 }

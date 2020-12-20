@@ -24,6 +24,7 @@ class TodoList extends Component {
             date={t.createdAt}
             key={t._id}
             task={t.task}
+            done={t.done}
           />
         );
       }
