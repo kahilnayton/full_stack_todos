@@ -2,9 +2,16 @@
 - Stack -
 React.js
 Redux
-Mongo DB
-Express
 Sass
+Mongo DB / Atlas Cluster
+Express.js
+Sass
+JWT / bcrypt
+
+
+### Try it out here
+https://todo-client-kn.herokuapp.com/
+
 
 
 ### Sneak peak 
